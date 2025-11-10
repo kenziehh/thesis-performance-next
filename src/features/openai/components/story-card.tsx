@@ -19,7 +19,7 @@ export default function StoryCard({ story }: { story: Story }) {
             <div className={cn(aspectClass, 'relative min-h-48 md:min-h-64 2xl:min-h-80 w-full')}>
                 <Image
                     fill
-                    src={story.image}
+                    src={story.src}
                     alt={story.title}
                     className="absolute object-cover rounded-lg"
                 />

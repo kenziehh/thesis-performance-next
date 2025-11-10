@@ -6,7 +6,7 @@ export interface News {
 }
 
 export interface Story {
-    image: string
+    src: string
     title: string
     category: string
     date: string
@@ -26,4 +26,13 @@ export interface Business{
     title: string
     category: string
     src: string
+}
+
+export interface Featured{
+    src: string
+    title: string
+    description: string
+    date?: string
+    category: string
+    minuteRead: number
 }

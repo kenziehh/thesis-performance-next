@@ -3,26 +3,13 @@
 
 import Image from "next/image"
 import { useRef, useEffect, useState } from "react"
+import { Featured } from "../types"
+import { formatDate } from "@/shared/lib/format"
 
-interface FeaturedCard {
-  id: string
-  image: string
-  title: string
-  description: string
-  category: string
-  time?: string
-  date?: string
-}
 
-interface FeaturedSectionProps {
-  title: string
-  description: string
-  date: string
-  image: string
-  cards: FeaturedCard[]
-}
 
-export function FeaturedSection({ title, description, date, image, cards }: FeaturedSectionProps) {
+
+export function FeaturedSection({ title, category, src, minuteRead, featuredCards }: { featuredCards: Featured[], title: string, category: string, src: string, minuteRead: number }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const rightListRef = useRef<HTMLDivElement>(null)
   const [canScrollPage, setCanScrollPage] = useState(false)
@@ -80,7 +67,7 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
         <div className="hidden w-full md:flex flex-col gap-4 h-full ">
           <div className="relative w-full min-h-[600px]">
             <Image
-              src="/openai/featured/atlas.png"
+              src={src}
               alt="Featured Image"
               fill
               style={{ objectFit: "cover" }}
@@ -105,7 +92,7 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
             <div className="md:hidden mb-8">
               <div className="relative aspect-video rounded-2xl overflow-hidden mb-4 shadow-lg">
                 <Image
-                  src="/openai/featured/atlas.png"
+                  src={src}
                   alt="Featured Image"
                   fill
                   style={{ objectFit: "cover" }}
@@ -114,17 +101,17 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
                 />              </div>
               <h2 className="text-2xl font-bold mb-2">{title}</h2>
               <p className="text-sm text-gray-600">
-                {description} <span className="font-semibold">{date}</span>
+                {category} <span className="font-semibold">{minuteRead} menit baca</span>
               </p>
             </div>
 
             {/* Cards List */}
             <div ref={rightListRef} className="space-y-6">
-              {cards.map((card) => (
-                <div key={card.id} className="group cursor-pointer">
+              {featuredCards.map((card,index) => (
+                <div key={index} className="group cursor-pointer">
                   <div className="relative aspect-square rounded-lg overflow-hidden mb-4 shadow-md hover:shadow-lg transition-shadow">
                     <Image
-                      src={card.image}
+                      src={card.src}
                       alt={card.title}
                       fill
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -133,9 +120,9 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
                   <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{card.title}</h3>
                   <div className="flex items-center justify-between text-sm text-gray-600">
                     <span>{card.category}</span>
-                    {card.date && <span>{card.date}</span>}
+                    {card.date && <span>{formatDate(card.date)}</span>}
                   </div>
-                  {card.time && <p className="text-xs text-gray-500 mt-1">{card.time}</p>}
+                  {card.minuteRead && <p className="text-xs text-gray-500 mt-1">{card.minuteRead} menit baca</p>}
                 </div>
               ))}
             </div>
@@ -150,7 +137,7 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
             <div className="md:hidden mb-8">
               <div className="relative rounded-2xl mb-4 shadow-lg overflow-hidden" style={{ aspectRatio: "9 / 16" }}>
                 <Image
-                  src="/openai/featured/atlas.png"
+                  src={src}
                   alt="Featured Image"
                   fill
                   style={{ objectFit: "cover" }}
@@ -168,11 +155,11 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
 
             {/* Cards List */}
             <div className="space-y-6">
-              {cards.map((card) => (
-                <div key={card.id} className="group cursor-pointer">
+              {featuredCards.map((card, index) => (
+                <div key={index} className="group cursor-pointer">
                   <div className="relative aspect-square rounded-lg mb-4 shadow-md hover:shadow-lg transition-shadow">
                     <Image
-                      src={card.image}
+                      src={card.src}
                       alt={card.title}
                       fill
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -183,7 +170,7 @@ export function FeaturedSection({ title, description, date, image, cards }: Feat
                     <span>{card.category}</span>
                     {card.date && <span>{card.date}</span>}
                   </div>
-                  {card.time && <p className="text-xs text-gray-500 mt-1">{card.time}</p>}
+                  {card.minuteRead && <p className="text-xs text-gray-500 mt-1">{card.minuteRead} menit baca</p>}
                 </div>
               ))}
             </div>
