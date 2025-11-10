@@ -1,7 +1,7 @@
 import React from 'react'
 import { categories } from '../data/categories'
-import { Badge } from '../components/badge'
 import Link from 'next/link'
+import { Badge } from '@/shared/components/badge'
 
 export default function CategorySection() {
     return (
