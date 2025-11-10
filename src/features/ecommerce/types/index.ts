@@ -1,13 +1,15 @@
-import { StaticImageData } from "next/image"
 
-export type Product = {
+export interface Product {
   id: string
   name: string
   price: number
   rating: number
   sold: number
   location: string
-  imageAlt?: string
-  image: StaticImageData
+  src: string
 }
 
+export interface Banner {
+  alt: string
+  src: string
+}
