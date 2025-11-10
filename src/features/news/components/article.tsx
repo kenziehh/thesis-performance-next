@@ -22,7 +22,7 @@ export default function Article() {
           controls
           preload="metadata"
           playsInline
-          poster="/images/news-poster.jpg"
+          src={"/news/video.mp4"}
           width={1920}
           height={1080}
         >
@@ -43,7 +43,7 @@ export default function Article() {
         </ul>
       </aside>
 
-      <ArticleBody repeat={20} />
+      <ArticleBody />
 
       <footer className="mt-10 border-t border-border pt-6 text-sm text-muted-foreground">
         Artikel ini disusun oleh tim redaksi berdasarkan data resmi dan wawancara dengan narasumber terkait.
