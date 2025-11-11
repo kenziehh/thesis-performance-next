@@ -4,7 +4,7 @@ import { Badge } from "@/shared/components/badge"
 import { ArrowUp } from "lucide-react"
 import { useState } from "react"
 
-export function ChatArea() {
+export function ChatGPT() {
   const [message, setMessage] = useState("")
 
   const suggestions = [
