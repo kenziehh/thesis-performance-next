@@ -10,8 +10,8 @@ export default function NewsCard({ news }: { news: News }) {
                 <Image alt={news.title} src={news.src} fill className='rounded-xl'/>
             </div>
             <div className="flex flex-col gap-4">
-                <h2 className="text-lg">{news.title}</h2>
-                <div className="flex gap-3 text-sm">
+                <h2 className="text-sm md:text-lg line-clamp-3">{news.title}</h2>
+                <div className="flex gap-3 text-xs md:text-sm">
                     <span className=''>{news.category}</span>
                     <span className="text-gray-500">{formatDate(news.date)}</span>
                 </div>
