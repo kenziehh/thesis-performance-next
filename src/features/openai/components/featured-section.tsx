@@ -9,61 +9,85 @@ import { formatDate } from "@/shared/lib/format"
 
 
 
-export function FeaturedSection({ title, category, src, minuteRead, featuredCards }: { featuredCards: Featured[], title: string, category: string, src: string, minuteRead: number }) {
-  const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const rightListRef = useRef<HTMLDivElement>(null)
-  const [canScrollPage, setCanScrollPage] = useState(false)
+export function FeaturedSection({
+  pageRef,
+  title,
+  category,
+  src,
+  minuteRead,
+  featuredCards
+}: {
+  pageRef: React.RefObject<HTMLDivElement>,
+  title: string
+  category: string
+  src: string
+  minuteRead: number
+  featuredCards: Featured[]
+}) {
+  const rightRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  const [active, setActive] = useState(false)
 
   useEffect(() => {
-    const scrollContainer = scrollContainerRef.current
-    const rightList = rightListRef.current
+    const sec = sectionRef.current
+    if (!sec) return
 
-    if (!scrollContainer || !rightList) return
-
-    const handleWheel = (e: WheelEvent) => {
-      const isAtBottom = rightList.scrollHeight - rightList.scrollTop - rightList.clientHeight < 50
-      const isAtTop = rightList.scrollTop < 50
-
-      // Jika scroll ke bawah dan list tidak di bawah, scroll list
-      if (e.deltaY > 0 && !isAtBottom) {
-        e.preventDefault()
-        rightList.scrollTop += e.deltaY
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setActive(entry.intersectionRatio >= 0.7)
+      },
+      {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
       }
-      // Jika scroll ke atas dan list tidak di atas, scroll list
-      else if (e.deltaY < 0 && !isAtTop) {
-        e.preventDefault()
-        rightList.scrollTop += e.deltaY
-      }
-      // Jika di posisi akhir, izinkan page scroll
-      else if ((e.deltaY > 0 && isAtBottom) || (e.deltaY < 0 && isAtTop)) {
-        setCanScrollPage(true)
-      }
-    }
+    )
 
-    const handleScroll = (e: Event) => {
-      const target = e.target as HTMLDivElement
-      const isAtBottom = target.scrollHeight - target.scrollTop - target.clientHeight < 50
-
-      if (isAtBottom) {
-        setCanScrollPage(true)
-      } else {
-        setCanScrollPage(false)
-      }
-    }
-
-    scrollContainer.addEventListener("wheel", handleWheel, { passive: false })
-    rightList.addEventListener("scroll", handleScroll)
-
-    return () => {
-      scrollContainer.removeEventListener("wheel", handleWheel)
-      rightList.removeEventListener("scroll", handleScroll)
-    }
+    observer.observe(sec)
+    return () => observer.disconnect()
   }, [])
 
+  // ✅ SCROLL SYNC — hanya kalau section aktif
+  useEffect(() => {
+    const page = pageRef.current
+    const right = rightRef.current
+    if (!page || !right) return
+
+    const onWheel = (e: WheelEvent) => {
+      if (!active) return // 🔥 JIKA TIDAK AKTIF → JANGAN HIJACK SCROLL
+
+      const delta = e.deltaY
+      const atTop = right.scrollTop <= 0
+      const atBottom =
+        right.scrollTop + right.clientHeight >= right.scrollHeight - 2
+
+      // SCROLL DOWN
+      if (delta > 0) {
+        if (!atBottom) {
+          e.preventDefault()
+          right.scrollTop += delta
+        }
+        return
+      }
+
+      // SCROLL UP
+      if (delta < 0) {
+        if (!atTop) {
+          e.preventDefault()
+          right.scrollTop += delta
+        }
+        return
+      }
+    }
+
+    page.addEventListener("wheel", onWheel, { passive: false })
+    return () => page.removeEventListener("wheel", onWheel)
+  }, [active, pageRef])
+
+
+
   return (
-    <div className="containerw-full bg-white py-6">
+    <div className="max-w-full container w-full bg-white py-6" ref={sectionRef}>
       <div className="p-6 flex gap-10 flex-col lg:flex-row lg:h-screen lg:overflow-hidden">
-        {/* Left Side - Sticky Featured Card */}
         <div className="hidden w-full md:flex flex-col gap-4 h-full ">
           <div className="relative w-full min-h-[600px]">
             <Image
@@ -75,20 +99,17 @@ export function FeaturedSection({ title, category, src, minuteRead, featuredCard
               className="max-h-[600px]"
             />
           </div>
-
           <div className="flex flex-col gap-4">
-            <h2 className="text-xl md:text-3xl lg:text-5xl max-w-3xl">Memperkenalkan ChatGPT Atlas, browser dengan ChatGPT bawaan</h2>
+            <h2 className="text-xl md:text-3xl lg:text-5xl max-w-3xl">{title}</h2>
             <div className="flex gap-3 ">
-              <span>Produk</span>
-              <span className="text-gray-500">10 menit baca</span>
+              <span>{category}</span>
+              <span className="text-gray-500">{minuteRead} menit baca</span>
             </div>
           </div>
         </div>
 
-        {/* Right  Side - Scrollable List */}
-        <div ref={scrollContainerRef} className="hidden md:block w-full lg:w-2/5 overflow-y-auto" style={{ scrollBehavior: "smooth" }}>
+        <div ref={rightRef}  className="hidden lg:block w-full lg:w-2/5 overflow-y-auto" >
           <div className="">
-            {/* Mobile Featured Card */}
             <div className="md:hidden mb-8">
               <div className="relative aspect-video rounded-2xl overflow-hidden mb-4 shadow-lg">
                 <Image
@@ -105,9 +126,8 @@ export function FeaturedSection({ title, category, src, minuteRead, featuredCard
               </p>
             </div>
 
-            {/* Cards List */}
-            <div ref={rightListRef} className="space-y-6">
-              {featuredCards.map((card,index) => (
+            <div className="space-y-16">
+              {featuredCards.map((card, index) => (
                 <div key={index} className="group cursor-pointer">
                   <div className="relative aspect-square rounded-lg overflow-hidden mb-4 shadow-md hover:shadow-lg transition-shadow">
                     <Image
@@ -117,7 +137,7 @@ export function FeaturedSection({ title, category, src, minuteRead, featuredCard
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">{card.title}</h3>
+                  <h3 className="text-black text-xl xl:text-3xl mb-2">{card.title}</h3>
                   <div className="flex items-center justify-between text-sm text-gray-600">
                     <span>{card.category}</span>
                     {card.date && <span>{formatDate(card.date)}</span>}
@@ -130,10 +150,8 @@ export function FeaturedSection({ title, category, src, minuteRead, featuredCard
         </div>
 
 
-        {/* Mobile */}
-        <div className="w-full md:hidden p-3" style={{ scrollBehavior: "smooth" }}>
-          <div className="">
-            {/* Mobile Featured Card */}
+        <div className="w-fit lg:hidden" style={{ scrollBehavior: "smooth" }}>
+          <div className="md:flex md:flex-col gap-8">
             <div className="md:hidden mb-8">
               <div className="relative rounded-2xl mb-4 shadow-lg overflow-hidden" style={{ aspectRatio: "9 / 16" }}>
                 <Image
@@ -141,20 +159,19 @@ export function FeaturedSection({ title, category, src, minuteRead, featuredCard
                   alt="Featured Image"
                   fill
                   style={{ objectFit: "cover" }}
-                  priority
+                  
                 />
               </div>
               <div className="flex flex-col gap-4">
-                <h2 className="text-3xl lg:text-5xl max-w-3xl">Memperkenalkan ChatGPT Atlas, browser dengan ChatGPT bawaan</h2>
+                <h2 className="text-3xl lg:text-5xl ">{title}</h2>
                 <div className="flex gap-3 ">
                   <span>Produk</span>
-                  <span className="text-gray-500">10 menit baca</span>
+                  <span className="text-gray-500">{minuteRead} menit baca</span>
                 </div>
               </div>
             </div>
 
-            {/* Cards List */}
-            <div className="space-y-6">
+            <div className="space-y-6 gap-x-6 md:grid md:grid-cols-3">
               {featuredCards.map((card, index) => (
                 <div key={index} className="group cursor-pointer">
                   <div className="relative aspect-square rounded-lg mb-4 shadow-md hover:shadow-lg transition-shadow">
