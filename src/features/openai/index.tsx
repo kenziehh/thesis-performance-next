@@ -52,6 +52,7 @@ export default function HomeOpenAI() {
 
                     <div
                         ref={pageRef}
+                        data-scroll-container
                         className="flex-1 overflow-y-auto h-screen md:max-w-[80vw]"
                     >
                         <ChatGPT />
