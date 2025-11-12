@@ -56,8 +56,7 @@ export default function StorySection({ stories }: { stories: Story[] }) {
     return (
         <section
             ref={sectionRef}
-            className="container py-8 flex-1 flex flex-col gap-6 p-6 bg-white"
-        >
+            className="container max-w-full py-8 flex-1 flex flex-col gap-6 p-6 bg-white overflow-hidden"        >
             <SectionHeader title="Kisah" href="/news" />
 
             <div className="hidden md:block w-full">
@@ -74,7 +73,7 @@ export default function StorySection({ stories }: { stories: Story[] }) {
                 </div>
             </div>
 
-            <div className="flex md:hidden gap-4 w-full overflow-x-auto pb-4">
+            <div className="flex md:hidden gap-4 w-full max-w-[90vw] sm:max-w-full overflow-x-auto -mb-4">
                 {stories.map((story, i) => (
                     <div
                         key={story.title}
