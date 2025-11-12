@@ -2,6 +2,7 @@ import { Star } from "lucide-react"
 import { cn } from "@/shared/lib/utils"
 import type { Product } from "../types"
 import { formatIDR } from "@/shared/lib/format"
+import Image from "next/image"
 
 
 
@@ -23,11 +24,9 @@ export function ProductCard({
         >
             <div className="relative">
                 <div className="aspect-square overflow-hidden">
-                    <img
+                    <Image
                         src={product.src}
                         alt={product.name}
-                        loading="lazy"
-                        decoding="async"
                         className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                     />
                 </div>
