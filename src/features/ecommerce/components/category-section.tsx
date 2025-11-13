@@ -1,9 +1,8 @@
 import React from 'react'
-import { categories } from '../data/categories'
 import Link from 'next/link'
 import { Badge } from '@/shared/components/badge'
 
-export default function CategorySection() {
+export default function CategorySection({ categories }: { categories: string[] }) {
     return (
         <section className={"container  px-4 py-10 md:py-20"} aria-label="Kategori populer">
             <div className="mb-3 md:mb-4">
