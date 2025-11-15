@@ -1,8 +1,7 @@
-import NewsContainer from '@/features/news'
-import React from 'react'
+import NewsMain from '@/features/news'
 
 export default function NewsPage() {
     return (
-        <NewsContainer />
+        <NewsMain />
     )
 }

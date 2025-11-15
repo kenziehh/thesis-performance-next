@@ -1,8 +1,7 @@
-import HomeOpenAI from "@/features/openai";
-import Image from "next/image";
+import HomeMain from "@/features/openai";
 
 export default function Home() {
   return (
-    <HomeOpenAI />
+    <HomeMain />
   );
 }

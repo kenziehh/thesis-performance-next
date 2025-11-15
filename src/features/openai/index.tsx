@@ -20,7 +20,7 @@ import { researchCards } from "./data/research"
 import { businessCards } from "./data/business"
 import { ChatGPT } from "./components/chat-gpt"
 
-export default function HomeOpenAI() {
+export default function HomeMain() {
     const [sidebarMobileOpen, setSidebarMobileOpen] = useState(false)
     const [sidebarDesktopOpen, setSidebarDesktopOpen] = useState(true)
 

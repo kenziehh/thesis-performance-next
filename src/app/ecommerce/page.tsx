@@ -1,8 +1,7 @@
-import EcommerceContainer from '@/features/ecommerce'
-import React from 'react'
+import EcommerceMain from '@/features/ecommerce'
 
 export default function EcommercePage() {
     return (
-        <EcommerceContainer />
+        <EcommerceMain />
     )
 }

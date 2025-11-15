@@ -7,7 +7,7 @@ import { products } from './data/products'
 import { categories } from './data/categories'
 
 
-export default function EcommerceContainer() {
+export default function EcommerceMain() {
   return (
     <>
       <Navbar />
