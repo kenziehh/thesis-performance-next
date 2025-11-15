@@ -1,4 +1,4 @@
-import { Story } from "../types";
+import type { Story } from "../types";
 
 export const storyCards: Story[] = [
     {

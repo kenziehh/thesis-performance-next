@@ -1,7 +1,7 @@
 import { formatDate } from '@/shared/lib/format'
 import Image from 'next/image'
 import React from 'react'
-import { News } from '../types'
+import type { News } from '../types'
 
 export default function NewsCard({ news }: { news: News }) {
     return (

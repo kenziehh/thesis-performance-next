@@ -105,7 +105,6 @@ export function Footer() {
               <h3 className="text-gray-600 text-sm font-medium mb-4 uppercase tracking-wide">{column.title}</h3>
               <ul className="space-y-3">
                 {column.links.map((link, linkIdx) => {
-                  // Check if this link has subsections
                   if ("subsections" in link && link.subsections) {
                     return (
                       <div key={linkIdx}>

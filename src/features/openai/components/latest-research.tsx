@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react"
 import SectionHeader from "./section-header"
-import { Research } from "../types"
+import type { Research } from "../types"
 import ResearchCard from "./research-card"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"

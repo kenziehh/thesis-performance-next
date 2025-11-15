@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { Story } from '../types'
+import type { Story } from '../types'
 import { cn } from '@/shared/lib/utils'
 import { formatDate } from '@/shared/lib/format'
 

@@ -1,4 +1,4 @@
-import { Featured } from "../types";
+import type { Featured } from "../types";
 
 export const featuredCards: Featured[] = [
     {

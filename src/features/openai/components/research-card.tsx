@@ -1,8 +1,6 @@
-import React from 'react'
-import { Research } from '../types'
-import Image from 'next/image'
-import { cn } from '@/shared/lib/utils'
 import { formatDate } from '@/shared/lib/format'
+import Image from 'next/image'
+import { Research } from '../types'
 
 export default function ResearchCard({ research }: { research: Research }) {
     return (

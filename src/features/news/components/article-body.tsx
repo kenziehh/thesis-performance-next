@@ -1,5 +1,5 @@
 import React from 'react'
-import { Article } from '../types'
+import type { Article } from '../types'
 
 
 export default function ArticleBody({ article }: { article: Article }) {

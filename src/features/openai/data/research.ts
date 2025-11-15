@@ -1,4 +1,4 @@
-import { Research } from "../types";
+import type { Research } from "../types";
 
 export const researchCards: Research[] = [
     {

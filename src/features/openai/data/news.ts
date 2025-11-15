@@ -1,4 +1,4 @@
-import { News } from "../types";
+import type { News } from "../types";
 
 export const newsCards: News[] = [
     {

@@ -46,21 +46,19 @@ export function FeaturedSection({
     return () => observer.disconnect()
   }, [])
 
-  // ✅ SCROLL SYNC — hanya kalau section aktif
   useEffect(() => {
     const page = pageRef.current
     const right = rightRef.current
     if (!page || !right) return
 
     const onWheel = (e: WheelEvent) => {
-      if (!active) return // 🔥 JIKA TIDAK AKTIF → JANGAN HIJACK SCROLL
+      if (!active) return 
 
       const delta = e.deltaY
       const atTop = right.scrollTop <= 0
       const atBottom =
         right.scrollTop + right.clientHeight >= right.scrollHeight - 2
 
-      // SCROLL DOWN
       if (delta > 0) {
         if (!atBottom) {
           e.preventDefault()
@@ -69,7 +67,6 @@ export function FeaturedSection({
         return
       }
 
-      // SCROLL UP
       if (delta < 0) {
         if (!atTop) {
           e.preventDefault()

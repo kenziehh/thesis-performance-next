@@ -6,7 +6,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import SectionHeader from "./section-header"
 import BusinessCard from "./business-card"
-import { Business } from "../types"
+import type { Business } from "../types"
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 

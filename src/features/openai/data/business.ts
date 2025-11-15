@@ -1,4 +1,4 @@
-import { Business } from "../types";
+import type { Business } from "../types";
 
 export const businessCards: Business[] = [
     {

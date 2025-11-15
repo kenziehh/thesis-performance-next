@@ -1,5 +1,5 @@
 import React from 'react'
-import { Article } from '../types'
+import type { Article } from '../types'
 import { formatDate } from '@/shared/lib/format'
 
 export default function ArticleHeader({ article }: { article: Article }) {

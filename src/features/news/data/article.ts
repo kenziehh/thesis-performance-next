@@ -1,4 +1,6 @@
-export const article = {
+import type { Article } from "../types";
+
+export const article:Article = {
   "title": "Tarif Trump ke China: Dampak Global dari Kebijakan Perdagangan yang Mengguncang Dunia",
   "videoUrl": "/news/video.mp4",
   "videoTitle": "Why Trump's tariff chaos actually makes sense | CNBC Explains",
