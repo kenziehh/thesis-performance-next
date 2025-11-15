@@ -25,6 +25,7 @@ export function ProductCard({
             <div className="relative">
                 <div className="aspect-square overflow-hidden">
                     <Image
+                        fill
                         src={product.src}
                         alt={product.name}
                         className="h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"

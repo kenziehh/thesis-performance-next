@@ -1,6 +1,5 @@
-import React from 'react'
-import type { Business } from '../types'
 import Image from 'next/image'
+import type { Business } from '../types'
 
 export default function BusinessCard({ business }: { business: Business }) {
     return (

@@ -1,12 +1,12 @@
 "use client"
 
-import React, { useRef } from "react"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import SectionHeader from "./section-header"
-import BusinessCard from "./business-card"
+import { useRef } from "react"
 import type { Business } from "../types"
+import BusinessCard from "./business-card"
+import SectionHeader from "./section-header"
 
 gsap.registerPlugin(ScrollTrigger, useGSAP)
 

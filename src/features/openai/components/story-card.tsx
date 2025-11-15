@@ -1,8 +1,7 @@
-import Image from 'next/image'
-import React from 'react'
-import type { Story } from '../types'
-import { cn } from '@/shared/lib/utils'
 import { formatDate } from '@/shared/lib/format'
+import { cn } from '@/shared/lib/utils'
+import Image from 'next/image'
+import type { Story } from '../types'
 
 export default function StoryCard({ story }: { story: Story }) {
     const aspectClass =

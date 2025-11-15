@@ -1,11 +1,11 @@
 "use client"
 
-import Link from "next/link"
-import React, { useRef } from "react"
-import gsap from "gsap"
-import { TextPlugin } from "gsap/TextPlugin"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { TextPlugin } from "gsap/TextPlugin"
+import Link from "next/link"
+import { useRef } from "react"
 
 gsap.registerPlugin(TextPlugin, ScrollTrigger, useGSAP)
 
@@ -75,6 +75,7 @@ export default function CTA() {
                 <Link
                     ref={buttonRef}
                     href="/download"
+                    prefetch={false}
                     className="px-6 py-2 bg-gray-200 text-black rounded-2xl hover:bg-gray-300 transition-colors"
                 >
                     Unduh
