@@ -9,7 +9,7 @@ export function Navbar({ onSidebarMobileToggle, isSidebarMobileOpen, onSidebarDe
         <header className="fixed z-50 w-full flex items-center justify-between px-6 py-4 bg-white">
             <div className="flex items-center gap-4">
                 <Link href={"/"} className="flex items-center gap-4">
-                    <div className="text-2xl font-bold text-foreground">OpenAI</div>
+                    <div className="text-2xl font-bold text-foreground">AI</div>
                     <button
                         onClick={onSidebarDekstopToggle}
                         className="hidden md:flex p-2 hover:bg-gray-100 rounded-lg transition"

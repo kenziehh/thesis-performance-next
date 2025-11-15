@@ -62,7 +62,7 @@ export default function BusinessSection({ business }: { business: Business[] }) 
             ref={sectionRef}
             className="py-8 flex flex-col gap-6 p-6 container bg-white"
         >
-            <SectionHeader title="OpenAI untuk Bisnis" href="/business" />
+            <SectionHeader title="AI untuk Bisnis" href="/business" />
 
             <div className="hidden lg:grid grid-cols-3 gap-6">
                 {business.map((b, i) => (
