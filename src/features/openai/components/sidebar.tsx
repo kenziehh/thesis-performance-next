@@ -6,12 +6,10 @@ import { PanelLeft } from "lucide-react"
 export function Sidebar({
     onSidebarMobileToggle,
     isSidebarMobileOpen,
-    onSidebarDekstopToggle,
     isSidebarDekstopOpen,
 }: {
     onSidebarMobileToggle: () => void
     isSidebarMobileOpen: boolean
-    onSidebarDekstopToggle: () => void
     isSidebarDekstopOpen: boolean
 }) {
     const menuItems = [

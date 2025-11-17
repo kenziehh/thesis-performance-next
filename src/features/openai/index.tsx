@@ -31,7 +31,6 @@ export default function HomeMain() {
             <div className="flex-1 flex flex-col">
                 <Navbar
                     onSidebarMobileToggle={() => setSidebarMobileOpen(!sidebarMobileOpen)}
-                    isSidebarMobileOpen={sidebarMobileOpen}
                     onSidebarDekstopToggle={() =>
                         setSidebarDesktopOpen(!sidebarDesktopOpen)
                     }
@@ -41,9 +40,6 @@ export default function HomeMain() {
                 <div className="flex flex-row">
                     <Sidebar
                         isSidebarDekstopOpen={sidebarDesktopOpen}
-                        onSidebarDekstopToggle={() =>
-                            setSidebarDesktopOpen(!sidebarDesktopOpen)
-                        }
                         onSidebarMobileToggle={() =>
                             setSidebarMobileOpen(!sidebarMobileOpen)
                         }
