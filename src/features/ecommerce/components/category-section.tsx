@@ -1,6 +1,5 @@
-import React from 'react'
+import Badge from '@/shared/components/badge'
 import Link from 'next/link'
-import { Badge } from '@/shared/components/badge'
 
 export default function CategorySection({ categories }: { categories: string[] }) {
     return (

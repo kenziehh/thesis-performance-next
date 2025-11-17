@@ -6,7 +6,7 @@ import Image from "next/image"
 
 
 
-export function ProductCard({
+export default function ProductCard({
     product,
     className,
 }: {

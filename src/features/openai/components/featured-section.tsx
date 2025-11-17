@@ -1,15 +1,15 @@
 
 "use client"
 
-import Image from "next/image"
-import { useRef, useEffect, useState } from "react"
-import { Featured } from "../types"
 import { formatDate } from "@/shared/lib/format"
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
+import { Featured } from "../types"
 
 
 
 
-export function FeaturedSection({
+export default function FeaturedSection({
   pageRef,
   title,
   category,

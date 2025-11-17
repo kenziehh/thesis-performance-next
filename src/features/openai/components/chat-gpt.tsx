@@ -1,12 +1,12 @@
 "use client"
 
-import { ArrowUp } from "lucide-react"
-import { useState, useRef } from "react"
-import gsap from "gsap"
+import Badge from "@/shared/components/badge"
 import { useGSAP } from "@gsap/react"
-import { Badge } from "@/shared/components/badge"
+import gsap from "gsap"
+import { ArrowUp } from "lucide-react"
+import { useRef, useState } from "react"
 
-export function ChatGPT() {
+export default function ChatGPT() {
   const [message, setMessage] = useState("")
   const titleRef = useRef<HTMLHeadingElement | null>(null)
   const badgesRef = useRef<(HTMLElement | null)[]>([])

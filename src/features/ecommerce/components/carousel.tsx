@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import { Banner } from "../types"
 
-export function BannerCarousel({ banners }: { banners: Banner[] }) {
+export default function BannerCarousel({ banners }: { banners: Banner[] }) {
     const [index, setIndex] = useState(0)
     const timerRef = useRef<NodeJS.Timeout | null>(null)
     const total = banners.length

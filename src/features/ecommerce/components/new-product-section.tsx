@@ -1,4 +1,4 @@
-import { ProductCard } from '../components/product-card'
+import ProductCard from '../components/product-card'
 import { Product } from '../types'
 
 export default function NewProductSection({ products }: { products: Product[] }) {
