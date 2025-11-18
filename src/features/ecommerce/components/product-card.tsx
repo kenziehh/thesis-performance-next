@@ -34,7 +34,6 @@ export default function ProductCard({
 
                 <div className="flex items-center gap-2 text-xs text-muted-foreground">
                     <div className="flex items-center gap-1">
-                        {/* rating stars */}
                         {Array.from({ length: 5 }).map((_, i) => {
                             const active = i < Math.round(product.rating)
                             return (
